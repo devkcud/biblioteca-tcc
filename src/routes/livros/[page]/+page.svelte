@@ -3,8 +3,13 @@
   import type { PageData } from './$types';
 
   $: curPage = parseInt($page.params.page);
+  let pageInput: number;
 
   export let data: PageData;
+
+  function changePage() {
+    window.location.href = `/livros/${pageInput}`;
+  }
 </script>
 
 <div class="p-8 w-fit flex items-center gap-4 mx-auto">
@@ -27,6 +32,8 @@
     <p>...</p>
     <a class="btn btn-neutral btn-sm" href="/livros/{data.pages}">{data.pages}</a>
   {/if}
+
+  <input bind:value={pageInput} class="input input-bordered w-24" type="text" placeholder="Página" on:blur={changePage} />
 </div>
 
 {#if data.books.length === 0}
