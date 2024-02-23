@@ -17,7 +17,7 @@ export const load: PageServerLoad = async ({ params }) => {
     take: BOOKS_PER_PAGE
   });
 
-  if (quantityInPage === 0) {
+  if (total !== 0 && quantityInPage === 0) {
     throw redirect(302, `/livros/${Math.ceil(total / BOOKS_PER_PAGE)}`);
   }
 

@@ -23,11 +23,15 @@
     <a class="btn btn-neutral btn-sm" href="/livros/{curPage + 1}">{curPage + 1}</a>
   {/if}
 
-  {#if curPage !== data.pages && data.pages !== curPage + 1}
+  {#if curPage !== data.pages && data.pages !== curPage + 1 && data.pages >= 1}
     <p>...</p>
     <a class="btn btn-neutral btn-sm" href="/livros/{data.pages}">{data.pages}</a>
   {/if}
 </div>
+
+{#if data.books.length === 0}
+  <p class="text-center">Nenhum livro encontrado</p>
+{/if}
 
 <ul class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
   {#each data.books as book}
