@@ -14,7 +14,7 @@ model Book {
   author      String // TODO: Mudar para uma tabela separada
   publisher   String // TODO: Mudar para uma tabela separada
   pages       Int
-  publishedAt DateTime
+  publishedAt DateTime @default(now())
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
