@@ -2,7 +2,7 @@ import type { PageServerLoad } from './$types';
 import prisma from '$lib/server/prisma';
 import { redirect } from '@sveltejs/kit';
 
-const BOOKS_PER_PAGE = 1;
+const BOOKS_PER_PAGE = 4;
 
 export const load: PageServerLoad = async ({ params }) => {
   const page = parseInt(params.page);
