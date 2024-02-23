@@ -20,6 +20,7 @@ bun install
 
 ```bash
 cp .env.example .env
+bunx prisma generate
 bunx prisma db push
 ```
 
