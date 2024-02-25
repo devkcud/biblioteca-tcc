@@ -12,10 +12,16 @@
   }
 </script>
 
-<div class="p-8 w-fit flex items-center gap-4 mx-auto">
+<svelte:head>
+  <title>Biblioteca | Página {curPage}</title>
+</svelte:head>
+
+<div class="p-4 w-fit flex items-center gap-4 mx-auto">
   {#if curPage !== 1 && curPage - 1 !== 1}
     <a class="btn btn-neutral btn-sm" href="/livros/1">1</a>
-    <p>...</p>
+    {#if curPage - 2 !== 1}
+      <p>...</p>
+    {/if}
   {/if}
 
   {#if curPage > 1}
@@ -29,7 +35,9 @@
   {/if}
 
   {#if curPage !== data.pages && data.pages !== curPage + 1 && data.pages >= 1}
-    <p>...</p>
+    {#if curPage + 2 !== data.pages}
+      <p>...</p>
+    {/if}
     <a class="btn btn-neutral btn-sm" href="/livros/{data.pages}">{data.pages}</a>
   {/if}
 
