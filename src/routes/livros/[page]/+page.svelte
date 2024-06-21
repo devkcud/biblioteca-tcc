@@ -17,31 +17,39 @@
 </svelte:head>
 
 <div class="p-4 w-fit flex items-center gap-4 mx-auto">
-  {#if curPage !== 1 && curPage - 1 !== 1}
-    <a class="btn btn-neutral btn-sm" href="/livros/1">1</a>
-    {#if curPage - 2 !== 1}
-      <p>...</p>
-    {/if}
+  {#if curPage !== 1}
+    <a class="btn btn-sm" href="/livros/1">1</a>
   {/if}
 
-  {#if curPage > 1}
-    <a class="btn btn-neutral btn-sm" href="/livros/{curPage - 1}">{curPage - 1}</a>
+  {#if curPage - 2 > 1}
+    <p>...</p>
+  {/if}
+
+  {#if curPage - 1 > 1}
+    <a class="btn btn-sm" href="/livros/{curPage - 1}">{curPage - 1}</a>
   {/if}
 
   <a class="btn btn-primary btn-sm" href="/livros/{curPage}">{curPage}</a>
 
-  {#if curPage < data.pages}
-    <a class="btn btn-neutral btn-sm" href="/livros/{curPage + 1}">{curPage + 1}</a>
+  {#if curPage + 1 < data.pages}
+    <a class="btn btn-sm" href="/livros/{curPage + 1}">{curPage + 1}</a>
   {/if}
 
-  {#if curPage !== data.pages && data.pages !== curPage + 1 && data.pages >= 1}
-    {#if curPage + 2 !== data.pages}
-      <p>...</p>
-    {/if}
-    <a class="btn btn-neutral btn-sm" href="/livros/{data.pages}">{data.pages}</a>
+  {#if curPage + 2 < data.pages}
+    <p>...</p>
   {/if}
 
-  <input bind:value={pageInput} class="input input-bordered w-24" type="text" placeholder="Página" on:blur={changePage} />
+  {#if curPage !== data.pages}
+    <a class="btn btn-sm" href="/livros/{data.pages}">{data.pages}</a>
+  {/if}
+
+  <input
+    bind:value={pageInput}
+    class="input input-bordered w-24"
+    type="text"
+    placeholder="Página"
+    on:blur={changePage}
+  />
 </div>
 
 {#if data.books.length === 0}
